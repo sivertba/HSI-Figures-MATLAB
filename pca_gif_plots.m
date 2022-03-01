@@ -58,9 +58,10 @@ for ii = 1:size(test,3)
     a.Color = 'w';
     a.BackgroundColor = 'k';
     
-    fname = sprintf('figs/pca_gif/pca_gif%s.png',num2str(ii,'%02.f'));
-    exportgraphics(fig,fname)
-%     break;
+%     fname = sprintf('figs/pca_gif/pca_gif%s.png',num2str(ii,'%02.f'));
+%     exportgraphics(fig,fname)
+    plot_darkmode;
+    break;
     
 end
 

@@ -12,14 +12,12 @@ cube_size = size(test);
 X = reshape(test,[cube_size(1)*cube_size(2) cube_size(3)]);
 
 % Select orginal spectra
-random_id = 100;
+random_id = 1000;
 orginal_spectra = X(random_id,:);
 
 
 % Make scores
 [~,loadings] = dimred_func(X,'PCA');
-
-random_id = 100;
 %%
 % orginal_spectra = X(random_id,:);
 % new_spectra = orginal_spectra*pinv(loadings(1:ii,:))*loadings(1:ii,:);
@@ -30,13 +28,24 @@ for ii = 1:size(test,3)
 
     orginal_spectra = X(random_id,:);
     new_spectra = orginal_spectra*pinv(loadings(1:ii,:))*loadings(1:ii,:);
-    plot(wl_hico, orginal_spectra, wl_hico,new_spectra);
-
+    plot(wl_hico, orginal_spectra,'r', wl_hico,new_spectra,'m');
     
-    box_string = sprintf("c:    %s/%s",num2str(ii,'%02.f'),num2str(size(test,3)));
-    a = annotation('textbox',[.45 .33 .4 .5],'String',box_string,'FitBoxToText','on');
-    a.Color = 'w';
+    box_string = sprintf("Components:    %s/%s",num2str(ii,'%02.f'),num2str(size(test,3)));
+    a = annotation('textbox',[.15 .8 .1 .1],'String',box_string,'FitBoxToText','on');
+    a.Color = '#edb99c';
     a.BackgroundColor = 'k';
+
+    xlabel("Wavelength (nm)")
+    ylabel("Radiance (W/m2/um/sr)")
+
+    set(gca,'Color','k')
+    set(gca,'XColor','#edb99c')
+    set(gca,'YColor','#edb99c')
+
+    legend(["\color{red}Original Spectra", "\color{magenta}Resotred Spectra"]);
+
+
+    axis([ 400 900 -5 45])
     
     fname = sprintf('figs/spectra_gif/spectra_gif%s.png',num2str(ii,'%02.f'));
     exportgraphics(fig,fname)
