@@ -27,12 +27,10 @@ for ii = 1:size(test,3)
     a.BackgroundColor = 'k';
     
     
-    fname = sprintf('figs/spatial_gif/spatial%s_gif%s.png',data,num2str(ii,'%02.f'));
+%    fname = sprintf('figs/spatial_gif/spatial%s_gif%s.png',data,num2str(ii,'%02.f'));
 %     fig.Position = [1636 674 700 600];
-    exportgraphics(fig,fname)
-%     pause(.5)
-%     break;
-end
+%    exportgraphics(fig,fname)
+%    pause(.5)
+    break;
 
-%%
-close all;
+end

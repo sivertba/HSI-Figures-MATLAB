@@ -1,9 +1,9 @@
 clc; close all; clear;
 %% Load
 
-fname       = "HYPSO-1_aeronet_calibrated_1.bip";
+fname       = "Data/frohavet_2022-04-19.bip";
 DimsHWN     = [956,684,120];
-precision   = "single";
+precision   = "uint16";
 offset      = 0;
 interleave  = "bip";
 byteorder   = 'ieee-le';
@@ -32,12 +32,14 @@ h1_wl = spectral_coeffs(4) + ...
 
 %% Resize
 
-h1_data_dim = [956,150,120];
+h1_data_dim = [956,684,120];
 h1_data = zeros(h1_data_dim);
 
 for i = 1:size(cube,3)
     h1_data(:,:,i) = imresize(cube(:,:,i), h1_data_dim(1:2));
 end
+
+
 
 save("h1_data.mat","h1_data","h1_wl","h1_data_dim");
 
