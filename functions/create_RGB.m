@@ -30,7 +30,4 @@ x_img(:,:,1) = RA;
 x_img(:,:,2) = GA;
 x_img(:,:,3) = BA;
 
-%figure;
-imagesc(x_img); axis off; axis image;
-
 end
